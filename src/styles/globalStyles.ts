@@ -7,7 +7,6 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.bgColor,
     padding: 20,
-    paddingTop: Platform.OS === 'ios' ? 52 : 42,
   },
 
   section: {
@@ -31,5 +30,24 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: Platform.OS === 'ios' ? 10 : 8,
     paddingVertical: 10,
+  },
+
+  tag: {
+    paddingHorizontal: 16,
+    paddingVertical: Platform.OS === 'ios' ? 6 : 4,
+    borderRadius: 90,
+    backgroundColor: colors.blue,
+  },
+  card: {
+    borderRadius: 12,
+  },
+  iconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 100,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
   },
 });

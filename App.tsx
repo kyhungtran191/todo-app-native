@@ -1,7 +1,8 @@
-import {View, Text, Button, StyleSheet, StatusBar} from 'react-native';
 import React from 'react';
-import {fontFamilies} from './src/constants/fontFamilies';
+import {SafeAreaView, StatusBar} from 'react-native';
 import HomeScreen from './src/pages/home/HomeScreen';
+import Router from './src/routers/Router';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App = () => {
   return (
@@ -10,23 +11,13 @@ const App = () => {
         translucent
         barStyle={'light-content'}
         backgroundColor={'transparent'}></StatusBar>
-      <HomeScreen></HomeScreen>
+      <SafeAreaView style={{flex: 1}}>
+        <NavigationContainer>
+          <Router></Router>
+        </NavigationContainer>
+      </SafeAreaView>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'coral',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontFamily: fontFamilies.bold,
-    fontSize: 32,
-    color: '#fff',
-  },
-});
 
 export default App;
