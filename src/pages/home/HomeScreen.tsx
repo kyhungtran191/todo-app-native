@@ -2,6 +2,7 @@ import {
   Add,
   Edit2,
   Element4,
+  Logout,
   Notification,
   SearchNormal1,
 } from 'iconsax-react-native';
@@ -22,8 +23,26 @@ import TitleComponent from '../../components/TitleComponent';
 import {colors} from '../../constants/colors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {globalStyles} from '../../styles/globalStyles';
+import RowComponents from '../../components/RowComponent';
 
+// Firebase
+import auth from '@react-native-firebase/auth';
+import {ALERT_TYPE, Toast} from 'react-native-alert-notification';
 const HomeScreen = ({navigation}: any) => {
+  const user = auth().currentUser;
+
+  const handleLogout = async () => {
+    auth()
+      .signOut()
+      .then(() =>
+        Toast.show({
+          type: ALERT_TYPE.SUCCESS,
+          title: 'Success',
+          textBody: 'Logout successfully!',
+        }),
+      );
+  };
+
   return (
     <View style={{flex: 1}}>
       <Container>
@@ -34,8 +53,17 @@ const HomeScreen = ({navigation}: any) => {
           </RowComponent>
         </SectionComponent>
         <SectionComponent>
-          <TextComponent text="Hi, Justin"></TextComponent>
-          <TitleComponent text="Be Productive today"></TitleComponent>
+          <RowComponents
+            justify="space-between"
+            stylesCustom={{alignItems: 'flex-start'}}>
+            <View>
+              <TextComponent text={user?.email || ''}></TextComponent>
+              <TitleComponent text="Be Productive today"></TitleComponent>
+            </View>
+            <TouchableOpacity onPress={handleLogout}>
+              <Logout size={20} color={colors.white} rotation={-180}></Logout>
+            </TouchableOpacity>
+          </RowComponents>
         </SectionComponent>
         <SectionComponent>
           <RowComponent

@@ -1,16 +1,25 @@
-import {View, Text, StyleProp, ViewStyle, TouchableOpacity} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  StyleProp,
+  ViewStyle,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
+import React, {ReactNode} from 'react';
 import {colors} from '../constants/colors';
 import TextComponent from './TextComponent';
 
 interface Props {
-  onPress?: () => void;
+  isLoading?: boolean;
+  icon?: ReactNode;
+  onPress: () => void;
   title: string;
   styles?: StyleProp<ViewStyle>;
 }
 
 const ButtonComponent = (props: Props) => {
-  const {styles, title, onPress} = props;
+  const {styles, title, onPress, isLoading} = props;
   return (
     <TouchableOpacity
       style={[
@@ -22,12 +31,17 @@ const ButtonComponent = (props: Props) => {
         styles,
       ]}
       onPress={onPress}
-      disabled={!onPress}>
-      <TextComponent
-        text={title}
-        styles={{
-          textAlign: 'center',
-        }}></TextComponent>
+      disabled={isLoading}>
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <TextComponent
+          text={title}
+          flex={0}
+          size={16}
+          styles={{textTransform: 'capitalize', textAlign: 'center'}}
+        />
+      )}
     </TouchableOpacity>
   );
 };

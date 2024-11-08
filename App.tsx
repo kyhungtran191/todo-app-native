@@ -3,19 +3,22 @@ import {SafeAreaView, StatusBar} from 'react-native';
 import HomeScreen from './src/pages/home/HomeScreen';
 import Router from './src/routers/Router';
 import {NavigationContainer} from '@react-navigation/native';
+import {AlertNotificationRoot} from 'react-native-alert-notification';
 
 const App = () => {
   return (
     <>
-      <StatusBar
-        translucent
-        barStyle={'light-content'}
-        backgroundColor={'transparent'}></StatusBar>
-      <SafeAreaView style={{flex: 1}}>
-        <NavigationContainer>
-          <Router></Router>
-        </NavigationContainer>
-      </SafeAreaView>
+      <AlertNotificationRoot>
+        <StatusBar
+          translucent
+          barStyle={'light-content'}
+          backgroundColor={'transparent'}></StatusBar>
+        <SafeAreaView style={{flex: 1}}>
+          <NavigationContainer>
+            <Router></Router>
+          </NavigationContainer>
+        </SafeAreaView>
+      </AlertNotificationRoot>
     </>
   );
 };
